@@ -13,7 +13,7 @@
 
 Route::get('/', 'HomesController@index');
 Route::get('/post', 'HomesController@post')->name('blog');
-// Route::get('/about', 'HomesController@about')->name('about');
+Route::get('/about', 'HomesController@about')->name('about');
 Route::get('/contact', 'HomesController@contact')->name('contact');
 Route::post('/kirim','HomesController@simpan');
 Route::get('/newForm','HomesController@newForm')->name('newForm');
