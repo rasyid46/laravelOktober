@@ -22,8 +22,13 @@ Route::get('/formEdit/{id}','HomesController@editForm');
 Route::put('/update/{id}','HomesController@updateForm');
 Route::get('/hapus/{id}','HomesController@hapus');
 Route::resource('/tampil','ArticlesController');
-Route::get('/artikel','ArticlesController@index');
+// Route::get('/artikel','ArticlesController@index');
+Route::resource('articles', 'ArticlesController');
 
 // tugas menambahkan table buku dengan crud nya
 Route::get('/hapusBuku/{id}','BukusController@destroy')->name('hapusBuku');
 Route::resource('/about', 'BukusController');
+Route::resource('comments', 'CommentController',['only'=>['store']]);
+
+
+//https://scotch.io/tutorials/simple-laravel-crud-with-resource-controllers

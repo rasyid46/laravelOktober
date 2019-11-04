@@ -2,47 +2,26 @@
 @section('content')
 <style>
  ul.pagination li {
-    display: inline;
-    font-size: 12px;
-    font-weight: bold;
+    display: inline; font-size: 12px;  font-weight: bold;
 }
-
 ul.pagination li a {
-
-    color: black;
-    padding: 8px 8px;
-    text-decoration: none;
-    transition: background-color .3s;
-    border: 1px solid #ddd;
-    margin: 4px;
+    color: black;    padding: 8px 8px;
+    text-decoration: none;    transition: background-color .3s;
+    border: 1px solid #ddd;    margin: 4px;
 }
-
 ul.pagination li a.active {
-    background-color: #4CAF50;
-    padding: 8px 8px;
-    margin: 4px;
-    color: white;
+    background-color: #4CAF50;    padding: 8px 8px;
+    margin: 4px;    color: white;
     border: 1px solid #4CAF50;
 }
-
 ul.pagination li.active {
-    /*background-color: #4CAF50;*/
-    background-color: #687282;
-    padding: 8px 8px;
-    margin: 4px;
-    color: white;
-    border: 1px solid #4CAF50;
+    background-color: #687282;   padding: 8px 8px;
+    margin: 4px;    color: white;    border: 1px solid #4CAF50;
 }
-
-/*ul.pagination li a:hover:not(.active) {background-color: #ddd;}*/
 ul.pagination li a:hover {background-color: #999999;}
-
 ul.pagination li.disabled {
-    /*background-color: #cccccc;*/
-    color: #ddd;
-    padding: 8px 8px;
-    border: 1px solid #ddd;
-    margin: 4px;
+    color: #ddd;    padding: 8px 8px;
+    border: 1px solid #ddd;    margin: 4px;
 }
 </style>
 <div class="tm-about-img-container">
@@ -80,7 +59,17 @@ ul.pagination li.disabled {
                             </span>
                         </div>
                     </div>
-                    <br/>    
+                    <br/>   
+                    <form action="{{route('articles.index')}}" method="get" class="tm-contact-form">
+                {{ csrf_field() }}{{ method_field('post')}}
+                <div class="form-group">
+                    <input type="text"  name="content" class="form-control" placeholder="content" />
+                </div>
+             
+              
+              
+                 <button type="submit" class="tm-btn">Cari</button>                          
+                </form>   
                         <table class="table table-striped" style="width:100%;">
                             <tr>
                                 <th>ID</th>
@@ -98,15 +87,7 @@ ul.pagination li.disabled {
                             @endforeach
 
                         </table>
-                        <nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-  </ul>
-</nav>
+    
             {!! $articles->links() !!}
                 </div>
             </div>

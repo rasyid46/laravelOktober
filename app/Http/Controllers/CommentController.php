@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Comment;
+ 
 use Illuminate\Http\Request;
 
+use App\Comment, App\Article;
+use Session, Redirect, Validator;
 class CommentController extends Controller
 {
     /**
@@ -35,7 +37,19 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
+    
         //
+        $validate = Validator::make($request->all(), Comment::valid());
+        if($validate->fails()){
+            return Redirect::to('articles/'.$request->article_id)
+            ->withErrors($validate)
+            ->withInput();
+        }else{
+           
+            Comment::create($request->all());
+            Session::flash('notice','Success add Comment');
+            return Redirect::to('articles/'.$request->article_id);
+        }
     }
 
     /**

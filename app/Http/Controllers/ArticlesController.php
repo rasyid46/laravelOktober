@@ -12,9 +12,15 @@ class ArticlesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $articles = Article::paginate(3);
+        $content = $request->input('content');
+       if(!empty($content)){
+            $articles = Article::Where('title', 'like', '%' . $content . '%')->orWhere('content', 'like', '%' . $content . '%')->paginate(5);
+       }else{
+           $articles = Article::paginate(3);
+       }
+
         return view('artikel2/index')->with('articles',$articles);
     }
 
@@ -47,7 +53,10 @@ class ArticlesController extends Controller
      */
     public function show($id)
     {
-        //
+       
+        $article = Article::find($id);
+        $comments = Article::find($id)->comments->sortBy('Comment.created_at');
+        return view('artikel2/show')->with('article',$article)->with('comments',$comments);
     }
 
     /**
