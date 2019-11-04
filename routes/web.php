@@ -13,7 +13,7 @@
 
 Route::get('/', 'HomesController@index');
 Route::get('/post', 'HomesController@post')->name('blog');
-Route::get('/about', 'HomesController@about')->name('about');
+// Route::get('/about', 'HomesController@about')->name('about');
 Route::get('/contact', 'HomesController@contact')->name('contact');
 Route::post('/kirim','HomesController@simpan');
 Route::get('/newForm','HomesController@newForm')->name('newForm');
@@ -22,6 +22,7 @@ Route::get('/formEdit/{id}','HomesController@editForm');
 Route::put('/update/{id}','HomesController@updateForm');
 Route::get('/hapus/{id}','HomesController@hapus');
 Route::resource('/tampil','ArticlesController');
+Route::get('/artikel','ArticlesController@index');
 
 // tugas menambahkan table buku dengan crud nya
 Route::get('/hapusBuku/{id}','BukusController@destroy')->name('hapusBuku');
