@@ -32,3 +32,6 @@ Route::resource('comments', 'CommentController',['only'=>['store']]);
 
 
 //https://scotch.io/tutorials/simple-laravel-crud-with-resource-controllers
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
