@@ -36,6 +36,5 @@ class UsersController extends Controller
             Session::flash('error', $errors);
         }
         return redirect()->back();
-       
     }
 }
