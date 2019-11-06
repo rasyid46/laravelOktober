@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('layouts.app')
 @section("content")
 <div>
 <h1>{!! $article->title !!}</h1>
@@ -28,22 +28,9 @@ control', 'rows' => 10, 'autofocus' => 'true')) !!}
 </div>
 <div class="clear"></div>
 </div>
-@if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
 
 
-@if(session('notice'))
-<div class="alert alert-success">
-    <strong>{!!session('notice')!!}</strong>  
-</div>    
-@endif
+
 
 <div class="form-group">
 
@@ -65,16 +52,11 @@ control-label')) !!}
 </div>
 {!! Form::close() !!}
 </div>
-Data Artikel
- 
-
+Data Comentar
     @foreach($comments as $comment)
-    <div style="outline: 1px solid #74AD1B;">
-    <p>{!! $comment->content !!}</p>
-    <i>{!! $comment->user !!}</i>
+    <div style="">
+    <p>Content :{!! $comment->content !!}</p>
+    <i>USer : {!! $comment->user !!}</i>
     </div>
     @endforeach
-
- 
-
 @stop

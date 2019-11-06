@@ -12,16 +12,19 @@ class ArticlesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct() {
+        $this->middleware('sentinel');
+    }
     public function index(Request $request)
     {
         $content = $request->input('content');
-       if(!empty($content)){
-            $articles = Article::Where('title', 'like', '%' . $content . '%')->orWhere('content', 'like', '%' . $content . '%')->paginate(5);
-       }else{
-           $articles = Article::paginate(3);
-       }
+        if(!empty($content)){
+            $articles = Article::Where('title', 'like', '%' . $content . '%')->orWhere('content', 'like', '%' . $content . '%')->paginate(10);
+        }else{
+            $articles = Article::paginate(10);
+        }
 
-        return view('artikel2/index')->with('articles',$articles);
+       return view('artikel2/index')->with('articles',$articles);
     }
 
     /**

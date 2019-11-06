@@ -40,6 +40,17 @@ http://www.templatemo.com/tm-488-classic
                 </div>                                  
             </div>            
         </div>
+        @if(session('notice'))
+    <strong>aaaa{!!session('notice')!!}</strong>  
+<div class="alert alert-success">
+</div>    
+@endif
+
+@if(session('error'))
+<div class="alert alert-error">
+    <strong>{!!session('error')!!}</strong>  
+</div>    
+@endif
         @yield('content')
         
         <footer class="tm-footer">
