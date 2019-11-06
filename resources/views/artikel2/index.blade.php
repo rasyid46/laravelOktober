@@ -34,7 +34,7 @@ ul.pagination li.disabled {
                         </div>
                         <div class="col-xs-3 col-sm-3 col-md-3">
                             <span>
-                                 <!-- <a href="{{ route('articles.create')}}"><button class="btn btn-primary">Tambah Data Buku</button></a> -->
+                                 <a href="{{ route('articles.create')}}"><button class="btn btn-primary">Artikel</button></a>
                             </span>
                         </div>
                     </div>

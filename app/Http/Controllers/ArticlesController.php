@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Article;
-
+use App\Http\Requests\ArticleRequest;
 class ArticlesController extends Controller
 {
     /**
@@ -21,7 +21,7 @@ class ArticlesController extends Controller
         if(!empty($content)){
             $articles = Article::Where('title', 'like', '%' . $content . '%')->orWhere('content', 'like', '%' . $content . '%')->paginate(10);
         }else{
-            $articles = Article::paginate(10);
+            $articles = Article::orderBy('updated_at', 'desc')->paginate(10);
         }
 
        return view('artikel2/index')->with('articles',$articles);
@@ -34,7 +34,7 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        //
+        return view('artikel2/form');
     }
 
     /**
@@ -43,9 +43,27 @@ class ArticlesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        //
+        $pathImage = '/images/article/';
+
+        $modelArtice = new Article();
+        if($request->article_image){ 
+
+            $article_image = 'image_article-'.str_random(5).time().'.'.$request->file('article_image')->getClientOriginalExtension();
+            $request->article_image->move(public_path('images/article/'), $article_image);
+            $modelArtice->article_image = $article_image;
+        }
+        $title = $request->get('title');
+        $content = $request->get('content');
+        $author = $request->get('author');
+       
+        $modelArtice->title = $title;
+        $modelArtice->content = $content;
+        $modelArtice->author = $author;
+        $modelArtice->save();
+        // Article::create($request->all());
+        return redirect()->route('articles.index');
     }
 
     /**

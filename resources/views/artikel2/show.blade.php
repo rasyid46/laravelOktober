@@ -1,9 +1,15 @@
 @extends('layouts.app')
 @section("content")
+<?php
+ $Urlimg =   $article->img_article();
+?>
 <div>
 <h1>{!! $article->title !!}</h1>
 <p>{!! $article->content !!}</p>
 <i>By {!! $article->author !!}</i>
+<p>Image</p>
+<img src="{{$Urlimg}}" alt="..." class="img-thumbnail">
+
 </div>
 <div>
 <h3><i><u>Give Comments</u></i></h3>
