@@ -9,7 +9,9 @@
           <!-- <li class="nav-item active"> -->
           <li> <a class="nav-link" href="{{route('login')}}">Login</a></li>
           <li class="nav-item"><a class="nav-link" href="{{route('signup')}}">Signup</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{route('reminders.create')}}">Forgot</a></li>
+          <li class="nav-item"> 
+          <a href="{{route('reminders.create')}}" class="nav-link">Forgot<a>
+          </li>
 @endif
     </ul>
   </div>
@@ -26,7 +28,6 @@
 @endif
 
 @if(session('error'))
-
 <div class="alert alert-danger alert-dismissible fade show" role="alert">
   <strong>{!!session('error')!!}</strong>  
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -36,11 +37,14 @@
 @endif
 
 @if ($errors->any())
-    <div class="alert alert-danger">
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
         <ul>
             @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
             @endforeach
         </ul>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
     </div>
 @endif

@@ -20,7 +20,8 @@ class ReminderController extends Controller
         $user = Sentinel::findById($getuser->id);
         ($reminder = Reminder::exists($user)) || ($reminder =
         Reminder::create($user));
-        Event::fire(new ReminderEvent($user, $reminder));
+        // Event::fire(new ReminderEvent($user, $reminder));
+        event(new ReminderEvent($user, $reminder));
         Session::flash('notice', 'Check your email for instruction');
         } else {
         Session::flash('error', 'Email not valid');

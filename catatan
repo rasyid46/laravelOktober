@@ -1,0 +1,6 @@
+ if(Sentinel::getUser()->roles()->first()->slug == 'administrator'){
+               return $next($request);
+
+          }else{
+                return   redirect()->route('dashboard');
+          }
