@@ -22,12 +22,13 @@ class SessionsController extends Controller
         }
     }
     public function login_store(SessionRequest $request){
+        
         if($user = Sentinel::authenticate($request->all())) {
-            Session::flash("notice", "Welcome ".$user->email);
-            return redirect()->intended('/');
+                Session::flash("notice", "Welcome ".$user->email);
+                return redirect ('/');
             } else {
-            Session::flash("error", "Login fails");
-            return view('sessions.login');
+                Session::flash("error", "Login fails");
+                return view('sessions.login');
         }
     }
 

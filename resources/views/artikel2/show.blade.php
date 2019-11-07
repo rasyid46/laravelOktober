@@ -8,7 +8,7 @@
 <p>{!! $article->content !!}</p>
 <i>By {!! $article->author !!}</i>
 <p>Image</p>
-<img src="{{$Urlimg}}" alt="..." class="img-thumbnail">
+<img src="{{$Urlimg}}" alt="..." class="img-thumbnail" width="100px">
 
 </div>
 <div>
