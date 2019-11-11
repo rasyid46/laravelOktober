@@ -14,7 +14,7 @@ class AddImageArticles extends Migration
     public function up()
     {
         Schema::table('articles', function (Blueprint $table) {
-            $table->text('article_image')->nullable();;
+            $table->text('article_image')->nullable();
         });
     }
 

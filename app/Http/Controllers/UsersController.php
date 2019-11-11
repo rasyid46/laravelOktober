@@ -19,8 +19,8 @@ class UsersController extends Controller
         //// or
         DB::beginTransaction();
         try {
-            $role = Sentinel::findRoleBySlug('admin');
-            $role_id = $role->id;
+            $role = Sentinel::findRoleBySlug('writer'); // cari role writer
+            $role_id = $role->id;  
             $credentials = [
                 'first_name'    => $request->input('first_name'),
                 'last_name'    => $request->input('last_name'),
@@ -30,11 +30,12 @@ class UsersController extends Controller
             $user = Sentinel::registerAndActivate($credentials);
             $user->roles()->attach($role_id);
             Session::flash('notice', 'Success create new user');
-            DB::commit();
+            DB::commit(); // simpan db
         } catch (\Throwable $errors) {
-            DB::rollBack();
+            DB::rollBack(); // rollback jika ada error pas insert ke db
             Session::flash('error', $errors);
         }
         return redirect()->back();
+        
     }
 }

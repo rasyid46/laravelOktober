@@ -13,7 +13,8 @@ class ArticlesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function __construct() {
-        // $this->middleware('sentinel');
+        $this->middleware('sentinel');
+        // $this->middleware('sentinel.role');
     }
     public function index(Request $request)
     {
@@ -49,15 +50,13 @@ class ArticlesController extends Controller
 
         $modelArtice = new Article();
         if($request->article_image){ 
-
-            $article_image = 'image_article-'.str_random(5).time().'.'.$request->file('article_image')->getClientOriginalExtension();
-            $request->article_image->move(public_path('images/article/'), $article_image);
-            $modelArtice->article_image = $article_image;
+            $article_image = 'image_article-'.str_random(5).time().'.'.$request->file('article_image')->getClientOriginalExtension(); // rename file yang di upload menjadi image_articlerandom.extensionfile
+            $request->article_image->move(public_path('images/article/'), $article_image); // path lokasi penyimpanan file public/image/article/
+            $modelArtice->article_image = $article_image; // simpan nama file image ke field article_image
         }
         $title = $request->get('title');
         $content = $request->get('content');
-        $author = $request->get('author');
-       
+        $author = $request->get('author');  
         $modelArtice->title = $title;
         $modelArtice->content = $content;
         $modelArtice->author = $author;

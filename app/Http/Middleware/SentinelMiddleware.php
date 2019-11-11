@@ -21,7 +21,7 @@ class SentinelMiddleware
             } else {
             return redirect()->guest('login');
             }
-            }
-            return $next($request);
+        }
+        return $next($request);
     }
 }

@@ -3,8 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Sentinel;
-class hasAdmin
+use sentinel;
+class hasWriter
 {
     /**
      * Handle an incoming request.
@@ -15,8 +15,7 @@ class hasAdmin
      */
     public function handle($request, Closure $next)
     {
-
-        if(Sentinel::getUser()->roles()->first()->slug == 'admin'){
+        if(Sentinel::getUser()->roles()->first()->slug == 'writer'){
             return $next($request);
         }else{
             return   redirect()->route('index');
