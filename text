@@ -1,0 +1,7 @@
+Event berdasarkan desain patern observer
+
+
+action terjadi ketika ada event selanjutkan event akan di tangkap 
+oleh listener 
+
+contoh ketika ingin mengirim notifikas email lupa password
